@@ -1017,48 +1017,16 @@ namespace MissionPlanner.GCSViews
         {
             if (!MainV2.comPort.BaseStream.IsOpen)
                 return;
+            var isitarmed = MainV2.comPort.MAV.cs.armed;
 
             // arm the MAV
-            try
+            bool ans = MainV2.comPort.doARM(!isitarmed);
+            ans = MainV2.comPort.doARM(!isitarmed, true);
+            if (ans == false)
             {
-                var isitarmed = MainV2.comPort.MAV.cs.armed;
-                var action = MainV2.comPort.MAV.cs.armed ? "Disarm" : "Arm";
-
-                if (isitarmed)
-                    if (CustomMessageBox.Show("Are you sure you want to " + action, action,
-                            CustomMessageBox.MessageBoxButtons.YesNo) !=
-                        CustomMessageBox.DialogResult.Yes)
-                        return;
-                StringBuilder sb = new StringBuilder();
-                var sub = MainV2.comPort.SubscribeToPacketType(MAVLink.MAVLINK_MSG_ID.STATUSTEXT, message =>
-                {
-                    sb.AppendLine(Encoding.ASCII.GetString(((MAVLink.mavlink_statustext_t) message.data).text)
-                        .TrimEnd('\0'));
-                    return true;
-                }, (byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent);
-                bool ans = MainV2.comPort.doARM(!isitarmed);
-                MainV2.comPort.UnSubscribeToPacketType(sub);
-                if (ans == false)
-                {
-                    if (CustomMessageBox.Show(
-                            action + " failed.\n" + sb.ToString() + "\nForce " + action +
-                            " can bypass safety checks,\nwhich can lead to the vehicle crashing\nand causing serious injuries.\n\nDo you wish to Force " +
-                            action + "?", Strings.ERROR, CustomMessageBox.MessageBoxButtons.YesNo,
-                            CustomMessageBox.MessageBoxIcon.Exclamation, "Force " + action, "Cancel") ==
-                        CustomMessageBox.DialogResult.Yes)
-                    {
-                        ans = MainV2.comPort.doARM(!isitarmed, true);
-                        if (ans == false)
-                        {
-                            CustomMessageBox.Show(Strings.ErrorRejectedByMAV, Strings.ERROR);
-                        }
-                    }
-                }
+                CustomMessageBox.Show(Strings.ErrorRejectedByMAV, Strings.ERROR);
             }
-            catch
-            {
-                CustomMessageBox.Show(Strings.ErrorNoResponce, Strings.ERROR);
-            }
+                   
         }
 
         private void but_bintolog_Click(object sender, EventArgs e)
@@ -1409,6 +1377,21 @@ namespace MissionPlanner.GCSViews
             ((Control) sender).Enabled = true;
         }
 
+        private void myButton5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Control)sender).Enabled = false;
+                MainV2.comPort.setMode("Loiter");
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+
+            ((Control)sender).Enabled = true;
+        }
+
         private void BUT_quickmanual_Click(object sender, EventArgs e)
         {
             try
@@ -1418,7 +1401,7 @@ namespace MissionPlanner.GCSViews
                     MainV2.comPort.MAV.cs.firmware == Firmwares.Ateryx ||
                     MainV2.comPort.MAV.cs.firmware == Firmwares.ArduRover ||
                     MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
-                    MainV2.comPort.setMode("Loiter");
+                    MainV2.comPort.setMode("Manual");
             }
             catch
             {
@@ -3303,6 +3286,7 @@ namespace MissionPlanner.GCSViews
             POI.POILoad();
         }
 
+        bool joystickfound = false;
         private void mainloop()
         {
             threadrun = true;
@@ -4242,6 +4226,61 @@ namespace MissionPlanner.GCSViews
 
                         tracklast = DateTime.Now;
                     }
+
+                    #region cosma
+                    //boutton arm/desarm
+                    if (MainV2.comPort.MAV.cs.armed) 
+                    { 
+                        button4.Text = "Désarmer"; 
+                        button4.BackColor = Color.Red;
+                    }
+                    else 
+                    { 
+                        button4.Text = "Armer";
+                        button4.BackColor = Color.Green;
+                    }
+
+                    //wp_speed
+                    if (MainV2.comPort.MAV.param["WP_SPEED"] != null && Convert.ToDecimal(MainV2.comPort.MAV.param["WP_SPEED"].Value) != numericUpDown1.Value)
+                    {
+                        numericUpDown1.Invoke((MethodInvoker)(() =>
+                        {
+                            numericUpDown1.Value = Convert.ToDecimal(MainV2.comPort.MAV.param["WP_SPEED"].Value);
+                        }));
+                    }
+
+                    //joystick detection 
+                    #region détecte quand on branche le joystick
+
+                    if ((MainV2.joystick == null || !MainV2.joystick.enabled) || !joystickfound)
+                    {
+                        var joysticklist = JoystickBase.getDevices();
+
+                        if (joysticklist.Count > 0)
+                        {
+                            if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduRover)
+                            {
+                                var joy = JoystickBase.Create(() => MainV2.comPort);
+
+                                if (joy.start(joysticklist[0].ToString()))
+                                {
+                                    MainV2.joystick = joy;
+                                    MainV2.joystick.enabled = true;
+
+                                    joystickfound = true;
+                                }
+                                else
+                                {
+                                    CustomMessageBox.Show("Failed to start joystick");
+                                }
+                            }
+                        }
+                    }
+
+                    #endregion
+                    
+                    #endregion
+
                 }
                 catch (Exception ex)
                 {
@@ -6646,5 +6685,24 @@ namespace MissionPlanner.GCSViews
             // Pass `this` to keep the pop-out always on top
             form.Show(this);
         }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Control)sender).Enabled = false;
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent,
+                "WP_SPEED", (double)numericUpDown1.Value);
+            }
+            catch
+            {
+                CustomMessageBox.Show("Erreur");
+            }
+
+            ((Control)sender).Enabled = true;
+            
+
+        }
+
     }
 }

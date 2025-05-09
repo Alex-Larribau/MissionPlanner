@@ -35,6 +35,7 @@ namespace MissionPlanner.GCSViews
             this.multiLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlactions = new System.Windows.Forms.TabControl();
             this.tabQuick = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelQuick = new System.Windows.Forms.TableLayoutPanel();
             this.quickView6 = new MissionPlanner.Controls.QuickView();
             this.contextMenuStripQuickView = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -46,6 +47,14 @@ namespace MissionPlanner.GCSViews
             this.quickView3 = new MissionPlanner.Controls.QuickView();
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabActions = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_SendMSG = new MissionPlanner.Controls.MyButton();
@@ -253,9 +262,13 @@ namespace MissionPlanner.GCSViews
             this.contextMenuStripactionstab.SuspendLayout();
             this.tabControlactions.SuspendLayout();
             this.tabQuick.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanelQuick.SuspendLayout();
             this.contextMenuStripQuickView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabActions.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabPagemessages.SuspendLayout();
@@ -454,6 +467,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripHud
             // 
+            this.contextMenuStripHud.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripHud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.videoToolStripMenuItem,
             this.setAspectRatioToolStripMenuItem,
@@ -570,6 +584,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripactionstab
             // 
+            this.contextMenuStripactionstab.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripactionstab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customizeToolStripMenuItem,
             this.multiLineToolStripMenuItem});
@@ -614,10 +629,20 @@ namespace MissionPlanner.GCSViews
             // tabQuick
             // 
             resources.ApplyResources(this.tabQuick, "tabQuick");
-            this.tabQuick.Controls.Add(this.tableLayoutPanelQuick);
+            this.tabQuick.Controls.Add(this.tableLayoutPanel3);
             this.tabQuick.Name = "tabQuick";
             this.tabQuick.UseVisualStyleBackColor = true;
             this.tabQuick.Resize += new System.EventHandler(this.tabQuick_Resize);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AllowDrop = true;
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanelQuick, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.button4, 0, 2);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // tableLayoutPanelQuick
             // 
@@ -645,6 +670,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripQuickView
             // 
+            this.contextMenuStripQuickView.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripQuickView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setViewCountToolStripMenuItem,
             this.undockToolStripMenuItem});
@@ -732,6 +758,80 @@ namespace MissionPlanner.GCSViews
             this.quickView1.numberformat = "0.00";
             this.toolTip1.SetToolTip(this.quickView1, resources.GetString("quickView1.ToolTip"));
             this.quickView1.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.button3, 2, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.BUT_quickmanual_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.myButton5_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BUT_quickauto_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
+            this.tableLayoutPanel5.Controls.Add(this.numericUpDown1, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 1;
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.toolTip1.SetToolTip(this.numericUpDown1, resources.GetString("numericUpDown1.ToolTip"));
+            this.numericUpDown1.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // button4
+            // 
+            resources.ApplyResources(this.button4, "button4");
+            this.button4.Name = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.BUT_ARM_Click);
             // 
             // tabActions
             // 
@@ -2514,6 +2614,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripMap
             // 
+            this.contextMenuStripMap.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripMap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goHereToolStripMenuItem,
             this.flyToHereAltToolStripMenuItem,
@@ -2744,7 +2845,7 @@ namespace MissionPlanner.GCSViews
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2919,9 +3020,14 @@ namespace MissionPlanner.GCSViews
             this.contextMenuStripactionstab.ResumeLayout(false);
             this.tabControlactions.ResumeLayout(false);
             this.tabQuick.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanelQuick.ResumeLayout(false);
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabActions.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -3210,5 +3316,14 @@ namespace MissionPlanner.GCSViews
         private ToolStripMenuItem gimbalVideoFullSizedToolStripMenuItem;
         private ToolStripMenuItem gimbalVideoMiniToolStripMenuItem;
         private ToolStripMenuItem gimbalVideoPopOutToolStripMenuItem;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel4;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label label7;
+        private NumericUpDown numericUpDown1;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

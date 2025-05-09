@@ -54,10 +54,12 @@ namespace MissionPlanner
             this.MenuArduPilot = new System.Windows.Forms.ToolStripButton();
             this.menu = new MissionPlanner.Controls.MyButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.status1 = new MissionPlanner.Controls.Status();
             this.MainMenu.SuspendLayout();
             this.CTX_mainmenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenu
@@ -83,6 +85,7 @@ namespace MissionPlanner
             // 
             // CTX_mainmenu
             // 
+            this.CTX_mainmenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.CTX_mainmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoHideToolStripMenuItem,
             this.fullScreenToolStripMenuItem,
@@ -207,16 +210,26 @@ namespace MissionPlanner
             // 
             resources.ApplyResources(this.menu, "menu");
             this.menu.Name = "menu";
+            this.menu.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.menu.UseVisualStyleBackColor = true;
             this.menu.MouseEnter += new System.EventHandler(this.menu_MouseEnter);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.status1);
             this.panel1.Controls.Add(this.MainMenu);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             this.panel1.MouseLeave += new System.EventHandler(this.MainMenu_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Image = global::MissionPlanner.Properties.Resources.logo_cosma;
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.MenuArduPilot_Click);
             // 
             // status1
             // 
@@ -239,6 +252,7 @@ namespace MissionPlanner
             this.MainMenu.PerformLayout();
             this.CTX_mainmenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -264,5 +278,6 @@ namespace MissionPlanner
         public System.Windows.Forms.ToolStripButton MenuHelp;
         public System.Windows.Forms.ToolStripButton MenuArduPilot;
         public Controls.Status status1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
