@@ -1459,6 +1459,16 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap polaires_usv {
+            get {
+                object obj = ResourceManager.GetObject("polaires_usv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap px4 {
             get {
                 object obj = ResourceManager.GetObject("px4", resourceCulture);

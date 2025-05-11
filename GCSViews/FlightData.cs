@@ -33,6 +33,10 @@ using LogAnalyzer = MissionPlanner.Utilities.LogAnalyzer;
 using TableLayoutPanelCellPosition = System.Windows.Forms.TableLayoutPanelCellPosition;
 using UnauthorizedAccessException = System.UnauthorizedAccessException;
 
+
+//only for ssh 
+using Renci.SshNet; 
+
 // written by michael oborne
 
 namespace MissionPlanner.GCSViews
@@ -2702,6 +2706,9 @@ namespace MissionPlanner.GCSViews
             {
                 mainloop();
             }
+
+            //resize ssh 
+            splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 2;
         }
 
         private void FlightData_ParentChanged(object sender, EventArgs e)
@@ -2793,6 +2800,15 @@ namespace MissionPlanner.GCSViews
             //Galt;
             //Gheading;
             //attitudeIndicatorInstrumentControl1;
+
+            if (ssh_launched)
+            {
+                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width*3/5));
+            } 
+            else
+            {
+                splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 2;
+            }
         }
 
         private void flightPlannerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4250,7 +4266,7 @@ namespace MissionPlanner.GCSViews
                     }
 
                     //joystick detection 
-                    #region détecte quand on branche le joystick
+                    #region détection auto joystick
 
                     if ((MainV2.joystick == null || !MainV2.joystick.enabled) || !joystickfound)
                     {
@@ -4258,21 +4274,18 @@ namespace MissionPlanner.GCSViews
 
                         if (joysticklist.Count > 0)
                         {
-                            if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduRover)
+                            var joy = JoystickBase.Create(() => MainV2.comPort);
+
+                            if (joy.start(joysticklist[0].ToString()))
                             {
-                                var joy = JoystickBase.Create(() => MainV2.comPort);
+                                MainV2.joystick = joy;
+                                MainV2.joystick.enabled = true;
 
-                                if (joy.start(joysticklist[0].ToString()))
-                                {
-                                    MainV2.joystick = joy;
-                                    MainV2.joystick.enabled = true;
-
-                                    joystickfound = true;
-                                }
-                                else
-                                {
-                                    CustomMessageBox.Show("Failed to start joystick");
-                                }
+                                joystickfound = true;
+                            }
+                            else
+                            {
+                                CustomMessageBox.Show("Failed to start joystick");
                             }
                         }
                     }
@@ -6704,5 +6717,30 @@ namespace MissionPlanner.GCSViews
 
         }
 
+
+        #region ssh connexion 
+
+        private UsvPolarPlotControl usvControl = new UsvPolarPlotControl();
+        private bool ssh_launched = false; 
+        private void button_panel_ssh_Click(object sender, EventArgs e)
+        {
+            if (!ssh_launched)
+            {
+                usvControl.Dock = DockStyle.Fill;
+                splitContainer2.Panel2.Controls.Add(usvControl);
+
+                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width * 3 / 5));
+                ssh_launched = true;
+            }
+            else
+            {
+                //on ferme 
+                splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 2;
+                ssh_launched = false;
+            }
+           
+        }
+
+        #endregion
     }
 }
