@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="pointCameraHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Pointer camera ici</value>
@@ -124,10 +124,10 @@
     <value>Changements aux Modes à gauche</value>
   </data>
   <data name="BUT_quickmanual.Text" xml:space="preserve">
-    <value>&amp;Manuel</value>
+    <value>Mode Manuel</value>
   </data>
   <data name="BUT_playlog.Text" xml:space="preserve">
-    <value>Lecture/Pause</value>
+    <value>Play/Pause</value>
   </data>
   <data name="BUT_setwp.ToolTip" xml:space="preserve">
     <value>Change le point cible actuel</value>
@@ -136,7 +136,7 @@
     <value>Changement du mode à Auto</value>
   </data>
   <data name="goHereToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nagiguez ici</value>
+    <value>Naviguer ici</value>
   </data>
   <data name="quickView1.ToolTip" xml:space="preserve">
     <value>Double Click me to change</value>
@@ -178,7 +178,7 @@
     <value>Arm the Mav</value>
   </data>
   <data name="BUT_log2kml.Text" xml:space="preserve">
-    <value>Journal &gt; KML</value>
+    <value>Journal -&gt; KML</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Zoom</value>
@@ -202,13 +202,13 @@
     <value>Script</value>
   </data>
   <data name="BUT_quickrtl.ToolTip" xml:space="preserve">
-    <value>Changement du Mode à RTL</value>
+    <value>Mode RTL</value>
   </data>
   <data name="tabGauges.Text" xml:space="preserve">
     <value>Jauges</value>
   </data>
   <data name="CHK_autopan.Text" xml:space="preserve">
-    <value>Centré</value>
+    <value>Centré carte sur vehicule</value>
   </data>
   <data name="setMJPEGSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Set MJPEG source</value>
@@ -223,7 +223,7 @@
     <value>Reset</value>
   </data>
   <data name="CB_tuning.Text" xml:space="preserve">
-    <value>M.à point</value>
+    <value>Graph direct</value>
   </data>
   <data name="dataGridViewImageColumn2.HeaderText" xml:space="preserve">
     <value>Bas</value>
@@ -271,7 +271,7 @@
     <value>Charger journal</value>
   </data>
   <data name="BUT_joystick.ToolTip" xml:space="preserve">
-    <value>Configuration et activation de votre manette de jeu</value>
+    <value>Configuration et activation de votre manette</value>
   </data>
   <data name="BUT_Homealt.ToolTip" xml:space="preserve">
     <value>Afficher l'altitude courant comme '0'. (Altitude d'orgine est defini comme '0').</value>
@@ -283,7 +283,7 @@
     <value>État</value>
   </data>
   <data name="BUT_quickauto.Text" xml:space="preserve">
-    <value>&amp;Auto</value>
+    <value>Mode Auto</value>
   </data>
   <data name="BUT_setwp.Text" xml:space="preserve">
     <value>Set WP</value>
@@ -310,7 +310,7 @@
     <value>Arret Enr.</value>
   </data>
   <data name="BUT_quickrtl.Text" xml:space="preserve">
-    <value>&amp;RTL</value>
+    <value>Mode RTL</value>
   </data>
   <data name="flyToHereAltToolStripMenuItem.Text" xml:space="preserve">
     <value>Fly To Here Alt</value>

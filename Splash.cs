@@ -10,9 +10,9 @@ namespace MissionPlanner
         {
             InitializeComponent();
 
-            string strVersion = typeof(Splash).GetType().Assembly.GetName().Version.ToString();
+            string strVersion = "COSMA Planner V1"; //  typeof(Splash).GetType().Assembly.GetName().Version.ToString();
 
-            TXT_version.Text = "Version: USV COSMA";// + Application.ProductVersion; // +" Build " + strVersion;
+            //TXT_version.Text = "Version: USV COSMA";// + Application.ProductVersion; // +" Build " + strVersion;
 
             Console.WriteLine(strVersion);
 

@@ -2708,7 +2708,7 @@ namespace MissionPlanner.GCSViews
             }
 
             //resize ssh 
-            splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 2;
+            splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 1;
         }
 
         private void FlightData_ParentChanged(object sender, EventArgs e)
@@ -2803,11 +2803,11 @@ namespace MissionPlanner.GCSViews
 
             if (ssh_launched)
             {
-                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width*3/5));
+                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width/2));
             } 
             else
             {
-                splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 2;
+                splitContainer2.SplitterDistance = splitContainer1.Panel2.Width - 1;
             }
         }
 
@@ -2867,8 +2867,9 @@ namespace MissionPlanner.GCSViews
             if (Settings.Instance.ContainsKey("guided_alt_frame"))
                 frame = (MAVLink.MAV_FRAME)byte.Parse(Settings.Instance["guided_alt_frame"]);
 
-            if (DialogResult.Cancel == AltInputBox.Show("Enter Alt", "Enter Guided Mode Alt", ref alt, ref frame))
-                return;
+            //cosma, on arrete de demander l'altitude parce que c'est un bateau
+            //if (DialogResult.Cancel == AltInputBox.Show("Enter Alt", "Enter Guided Mode Alt", ref alt, ref frame))
+            //    return;
 
             Settings.Instance["guided_alt"] = alt;
             Settings.Instance["guided_alt_frame"] = ((byte)frame).ToString();
@@ -6729,7 +6730,7 @@ namespace MissionPlanner.GCSViews
                 usvControl.Dock = DockStyle.Fill;
                 splitContainer2.Panel2.Controls.Add(usvControl);
 
-                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width * 3 / 5));
+                splitContainer2.SplitterDistance = (int)Math.Round((double)(splitContainer1.Panel2.Width /2));
                 ssh_launched = true;
             }
             else

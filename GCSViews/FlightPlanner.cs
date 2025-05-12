@@ -1815,6 +1815,8 @@ namespace MissionPlanner.GCSViews
                 DialogResult result = fd.ShowDialog();
                 string file = fd.FileName;
 
+                //todo reussir à lire les .plan de QGC
+
                 if (File.Exists(file))
                 {
                     Settings.Instance["WPFileDirectory"] = Path.GetDirectoryName(file);
@@ -1875,6 +1877,7 @@ namespace MissionPlanner.GCSViews
 
                     lbl_wpfile.Text = "Loaded " + Path.GetFileName(file);
                 }
+            
             }
         }
 
