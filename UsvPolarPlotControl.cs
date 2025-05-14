@@ -486,7 +486,7 @@ public class UsvPolarPlotControl : UserControl
             // 
             this.labelDuree.AutoSize = true;
             this.labelDuree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDuree.Location = new System.Drawing.Point(122, 26);
             this.labelDuree.Name = "labelDuree";
             this.labelDuree.Size = new System.Drawing.Size(113, 26);
@@ -609,6 +609,7 @@ public class UsvPolarPlotControl : UserControl
             this.sshOutputBox.Size = new System.Drawing.Size(232, 46);
             this.sshOutputBox.TabIndex = 37;
             this.sshOutputBox.Text = "Veuillez vous connecter";
+            this.sshOutputBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ShowFenetreTerm);
             // 
             // button3
             // 
@@ -688,6 +689,9 @@ public class UsvPolarPlotControl : UserControl
     private SshClient sshClient;
     private ShellStream shellStream;
 
+    private FenetreTerminal fenetreTerminal;
+
+
     //graph
     private int maxRadius = 50; //les radius sont en pixel
     private int maxDistance = 50; //les distances en m 
@@ -742,7 +746,7 @@ public class UsvPolarPlotControl : UserControl
 
                     com_etablie = true;
 
-                    DialogResult result = MessageBox.Show("Connexion réussi ! Lancer byobu ?",
+                    DialogResult result = MessageBox.Show("Connexion réussie ! Lancer byobu ?",
                             "Confirmation",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question );
@@ -785,13 +789,17 @@ public class UsvPolarPlotControl : UserControl
         else if (sender.Equals(button1))
         {
             message = ordreCombo.SelectedItem.ToString();
-            if (message == "PAS D'ORDRE") { return; }
+            if (message == "PAS D'ORDRE") 
+            { 
+                return; 
+            }
             else
             {
                 try
                 {
                     //on traduit grace au dictionaire ordremapping 
                     success = ordreMapping.TryGetValue(message, out messageToSend);
+                    ordreCombo.SelectedItem = 0;  
                 }
                 catch { }
             }
@@ -806,6 +814,7 @@ public class UsvPolarPlotControl : UserControl
                 try
                 {
                     success = urgenceMapping.TryGetValue(message, out messageToSend);
+                    urgenceCombo.SelectedItem = 0;
                 }
                 catch { }
             }
@@ -835,6 +844,21 @@ public class UsvPolarPlotControl : UserControl
 
     private void decodeAndLabel(string line)
     {
+        //2025-05-14 08:31:29.839 | SUCCESS  | usv:__printInformation:150 - USV: RTK_FLOAT, ARM, LOITER, SURFACE | AUV#1:SURFACE, 173.0m, 148°
+
+        //envoi de la ligne à fenetreTerminal
+        if (!string.IsNullOrWhiteSpace(line))
+        {
+            this.Invoke((Action)(() =>
+            {
+                if (fenetreTerminal != null && !fenetreTerminal.IsDisposed)
+                {
+                    fenetreTerminal.AppendLine(line);
+                }
+            }));
+        }
+
+
         var lineMatch = Regex.Match(line, @"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) USV:.*\| AUV#\d+:");
         if (!lineMatch.Success)
             return;
@@ -883,24 +907,24 @@ public class UsvPolarPlotControl : UserControl
             label_Bearing.Text = $"{bearing}°";
 
             //couleur emergency/normal
-            if (auvState.ToUpper().Contains("EMERGENCY") && labelModeAuv.ForeColor != Color.Red)
-            {
-                labelModeAuv.ForeColor = Color.Red;
-                try
-                {
+            //if (auvState.ToUpper().Contains("EMERGENCY") && labelModeAuv.ForeColor != Color.Red)
+            //{
+            //    labelModeAuv.ForeColor = Color.Red;
+            //    try
+            //    {
                     //todo comprendre pourquoi ce débile bip tout le temps 
                     //Console.Beep(1000, 100); 
-                }
-                catch
-                {
+                //}
+                //catch
+                //{
                     //todo tester le son
                     //System.Media.SystemSounds.Beep.Play();
-                }
-            }
-            else
-            {
-                labelModeAuv.ForeColor = Color.White;
-            }
+            //    }
+            //}
+            //else
+            //{
+            //    labelModeAuv.ForeColor = Color.White;
+            //}
 
             //stockage et affichage 
             newPosition(bearing, distance);
@@ -949,6 +973,9 @@ public class UsvPolarPlotControl : UserControl
             while (sshClient?.IsConnected == true)
             {
                 string line = shellStream.ReadLine();
+
+                line = Regex.Replace(line, @"\x1B\[[0-9;]*[A-Za-z]", "").Trim();
+
                 if (!string.IsNullOrEmpty(line))
                 {
                     this.Invoke((Action)(() =>
@@ -1074,5 +1101,18 @@ public class UsvPolarPlotControl : UserControl
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
         maxDistance = int.Parse(comboBox1.Text); 
+    }
+
+    private void ShowFenetreTerm(object sender, MouseEventArgs e)
+    {
+        if (fenetreTerminal == null || fenetreTerminal.IsDisposed)
+        {
+            fenetreTerminal = new FenetreTerminal();
+            fenetreTerminal.Show();
+        }
+        else
+        {
+            fenetreTerminal.BringToFront();
+        }
     }
 }

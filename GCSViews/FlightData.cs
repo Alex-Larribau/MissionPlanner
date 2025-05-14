@@ -1170,7 +1170,13 @@ namespace MissionPlanner.GCSViews
 
                 MainV2.joystick.clearRCOverride();
 
-                but_disablejoystick.Visible = false;
+                //but_disablejoystick.Visible = false;
+                but_disablejoystick.Text = "Enable Joystick"; 
+            }
+            else
+            {
+                //relance la detection auto
+                joystickfound = false;
             }
         }
 
@@ -4269,8 +4275,9 @@ namespace MissionPlanner.GCSViews
                     //joystick detection 
                     #region détection auto joystick
 
-                    if ((MainV2.joystick == null || !MainV2.joystick.enabled) || !joystickfound)
+                    if (MainV2.comPort.BaseStream.IsOpen && !joystickfound && ((MainV2.joystick == null || !MainV2.joystick.enabled) || !joystickfound))
                     {
+                        log.Info("Flight data : cosma joystick detection"); 
                         var joysticklist = JoystickBase.getDevices();
 
                         if (joysticklist.Count > 0)
@@ -4283,6 +4290,7 @@ namespace MissionPlanner.GCSViews
                                 MainV2.joystick.enabled = true;
 
                                 joystickfound = true;
+                                but_disablejoystick.Text = "Disable Joystick";
                             }
                             else
                             {
@@ -6725,6 +6733,8 @@ namespace MissionPlanner.GCSViews
         private bool ssh_launched = false; 
         private void button_panel_ssh_Click(object sender, EventArgs e)
         {
+            log.Info("cosma : USV panel ssh starting");
+
             if (!ssh_launched)
             {
                 usvControl.Dock = DockStyle.Fill;
@@ -6743,5 +6753,6 @@ namespace MissionPlanner.GCSViews
         }
 
         #endregion
+
     }
 }

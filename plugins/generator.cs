@@ -82,7 +82,7 @@ namespace generator
             // aGaugeSpeed
             // 
             this.aGaugeSpeed.BackColor = System.Drawing.Color.Transparent;
-            this.aGaugeSpeed.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
+            //this.aGaugeSpeed.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
             this.aGaugeSpeed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.aGaugeSpeed.BaseArcColor = System.Drawing.Color.Transparent;
             this.aGaugeSpeed.BaseArcRadius = 70;
