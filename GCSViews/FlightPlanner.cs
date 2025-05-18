@@ -299,15 +299,16 @@ namespace MissionPlanner.GCSViews
             timer1.Start();
 
             // hide altmode if old copter version
-            if (MainV2.comPort.BaseStream != null && MainV2.comPort.BaseStream.IsOpen && MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2 &&
-                MainV2.comPort.MAV.cs.version < new Version(3, 3))
-            {
-                CMB_altmode.Visible = false;
-            }
-            else
-            {
-                CMB_altmode.Visible = true;
-            }
+            CMB_altmode.Visible = false;
+            //if (MainV2.comPort.BaseStream != null && MainV2.comPort.BaseStream.IsOpen && MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2 &&
+            //    MainV2.comPort.MAV.cs.version < new Version(3, 3))
+            //{
+            //    CMB_altmode.Visible = false;
+            //}
+            //else
+            //{
+            //    CMB_altmode.Visible = true;
+            //}
 
             // hide spline wp options if not arducopter
             if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
@@ -1317,14 +1318,14 @@ namespace MissionPlanner.GCSViews
 
         public void updateDisplayView()
         {
-            rallyPointsToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayRallyPointsMenu;
-            geoFenceToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayGeoFenceMenu;
-            createSplineCircleToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displaySplineCircleAutoWp;
+            //rallyPointsToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayRallyPointsMenu;
+            //geoFenceToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayGeoFenceMenu;
+            //createSplineCircleToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displaySplineCircleAutoWp;
             textToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayTextAutoWp;
             createCircleSurveyToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayCircleSurveyAutoWp;
             pOIToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayPoiMenu;
-            trackerHomeToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayTrackerHomeMenu;
-            CHK_verifyheight.Visible = MainV2.DisplayConfiguration.displayCheckHeightBox;
+            //trackerHomeToolStripMenuItem.Visible = MainV2.DisplayConfiguration.displayTrackerHomeMenu;
+            CHK_verifyheight.Visible = false;   // MainV2.DisplayConfiguration.displayCheckHeightBox;
 
             //hide dynamically generated toolstrip items in the auto WP dropdown (these do not have name objects populated)
             foreach (ToolStripItem item in autoWPToolStripMenuItem.DropDownItems)

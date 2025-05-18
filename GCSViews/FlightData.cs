@@ -4277,7 +4277,8 @@ namespace MissionPlanner.GCSViews
 
                     if (MainV2.comPort.BaseStream.IsOpen && !joystickfound && ((MainV2.joystick == null || !MainV2.joystick.enabled) || !joystickfound))
                     {
-                        log.Info("Flight data : cosma joystick detection"); 
+                        //debug
+                        //log.Info("Flight data : cosma joystick detection"); 
                         var joysticklist = JoystickBase.getDevices();
 
                         if (joysticklist.Count > 0)
@@ -6754,5 +6755,93 @@ namespace MissionPlanner.GCSViews
 
         #endregion
 
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                MessageBox.Show("Veuillez vous connecter à un véhicule");
+                return;
+            }
+             
+            if (toolStripComboBox1.Text != null || toolStripComboBox1.SelectedIndex == -1) 
+            {
+                MainV2.comPort.setWPCurrent(MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid, (ushort)toolStripComboBox1.SelectedIndex);
+
+                MessageBox.Show("set wp n°" + Convert.ToString(toolStripComboBox1.SelectedIndex) + " as next wp");
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un wp dans le menu déroulant");
+            }
+        }
+
+        private void contextMenuStripSetWP_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            toolStripComboBox1.Items.Clear();
+
+            //CMB_setwp.Items.Add("0 (Home)");
+
+            if (MainV2.comPort.MAV.param["CMD_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["CMD_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    toolStripComboBox1.Items.Add(z.ToString());
+                }
+
+                return;
+            }
+
+            if (MainV2.comPort.MAV.param["WP_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["WP_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    toolStripComboBox1.Items.Add(z.ToString());
+                }
+
+                return;
+            }
+
+            if (MainV2.comPort.MAV.param["MIS_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["MIS_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    toolStripComboBox1.Items.Add(z.ToString());
+                }
+
+                return;
+            }
+
+            if (MainV2.comPort.MAV.wps.Count > 0)
+            {
+                int wps = MainV2.comPort.MAV.wps.Count;
+                for (int z = 1; z <= wps; z++)
+                {
+                    toolStripComboBox1.Items.Add(z.ToString());
+                }
+
+                return;
+            }
+
+        }
+
+        private void iciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PointLatLngAlt position = new PointLatLngAlt();
+            position.Lat = MouseDownStart.Lat; 
+            position.Lng = MouseDownStart.Lng;
+            position.Alt = 0; 
+            POI.POIAdd(position);
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CurrentGMapMarker == null || !(CurrentGMapMarker is GMapMarkerPOI))
+                return;
+
+            POI.POIEdit((GMapMarkerPOI)CurrentGMapMarker);
+        }
     }
 }

@@ -680,5 +680,11 @@ namespace MissionPlanner.Controls
             _filterTimer.Elapsed += FilterTimerOnElapsed;
             _filterTimer.Start();
         }
+
+        private void myButton1_Click(object sender, EventArgs e)
+        {
+            if (CustomMessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+                MainV2.comPort.doReboot(false, true);
+        }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MissionPlanner;
 using MissionPlanner.GCSViews;
 using Renci.SshNet;
+using static MissionPlanner.Utilities.LTM;
 
 public class UsvPolarPlotControl : UserControl
 {
@@ -60,11 +61,15 @@ public class UsvPolarPlotControl : UserControl
     private PictureBox pictureBox2;
     private ComboBox comboBox1;
     private Label label6;
-    private Random rand = new Random();
-
+    private System.Windows.Forms.Timer TimerLastMessage = new System.Windows.Forms.Timer();
+    
     public UsvPolarPlotControl()
     {
         InitializeComponent();
+
+        this.TimerLastMessage.Interval = 1000; // 1 seconde
+        this.TimerLastMessage.Tick += UpdateDateSinceLastMessage;
+        this.TimerLastMessage.Start();
     }
 
     //designer
@@ -721,6 +726,8 @@ public class UsvPolarPlotControl : UserControl
             button_connect.Text = "Connect";
 
             com_etablie = false;
+
+            lastTimestamp = null; 
         }
         else
         {
@@ -846,15 +853,12 @@ public class UsvPolarPlotControl : UserControl
     {
         //2025-05-14 08:31:29.839 | SUCCESS  | usv:__printInformation:150 - USV: RTK_FLOAT, ARM, LOITER, SURFACE | AUV#1:SURFACE, 173.0m, 148°
 
-        //envoi de la ligne à fenetreTerminal
-        if (!string.IsNullOrWhiteSpace(line))
+        //envoi de la ligne à fenetreTerminal 
+        if (!string.IsNullOrWhiteSpace(line) && fenetreTerminal != null && !fenetreTerminal.IsDisposed)
         {
             this.Invoke((Action)(() =>
             {
-                if (fenetreTerminal != null && !fenetreTerminal.IsDisposed)
-                {
-                    fenetreTerminal.AppendLine(line);
-                }
+                fenetreTerminal.AppendLine(line);
             }));
         }
 
@@ -865,25 +869,11 @@ public class UsvPolarPlotControl : UserControl
 
         sshOutputBox.Text = line + Environment.NewLine;
 
-        // Calcul du temps entre messages
-        DateTime currentTimestamp;
-        if (!DateTime.TryParseExact(lineMatch.Groups[1].Value, "yyyy-MM-dd HH:mm:ss.fff", null, System.Globalization.DateTimeStyles.None, out currentTimestamp))
+        if (!DateTime.TryParseExact(lineMatch.Groups[1].Value, "yyyy-MM-dd HH:mm:ss.fff", null, System.Globalization.DateTimeStyles.None, out DateTime currentTimestamp))
             return;
 
-        if (lastTimestamp.HasValue)
-        {
-            double diffSeconds = (currentTimestamp - lastTimestamp.Value).TotalSeconds;
-
-            if (diffSeconds < 6)
-                labelDuree.ForeColor = Color.Green;
-            else if (diffSeconds <= 21)
-                labelDuree.ForeColor = Color.Orange;
-            else
-                labelDuree.ForeColor = Color.Red;
-
-            labelDuree.Text = $"{diffSeconds:F2} s";
-        }
-        lastTimestamp = currentTimestamp;
+        //date du dernier message = maintenant
+        lastTimestamp = DateTime.Now;
 
         // Infos USV
         var usvMatch = Regex.Match(line, @"USV:([^,]+), ([^,]+), ([^,]+), ([^|]+) \|");
@@ -907,18 +897,26 @@ public class UsvPolarPlotControl : UserControl
             label_Bearing.Text = $"{bearing}°";
 
             //couleur emergency/normal
+            if (auvState.ToUpper().Contains("EMERGENCY"))
+            {
+                labelModeAuv.ForeColor = Color.FromArgb(255, 255, 88, 71);
+            }
+            else
+            {
+                labelModeAuv.ForeColor = System.Drawing.SystemColors.ControlText;
+            }
             //if (auvState.ToUpper().Contains("EMERGENCY") && labelModeAuv.ForeColor != Color.Red)
             //{
             //    labelModeAuv.ForeColor = Color.Red;
             //    try
             //    {
-                    //todo comprendre pourquoi ce débile bip tout le temps 
-                    //Console.Beep(1000, 100); 
-                //}
-                //catch
-                //{
-                    //todo tester le son
-                    //System.Media.SystemSounds.Beep.Play();
+            //todo comprendre pourquoi ce débile bip tout le temps 
+            //Console.Beep(1000, 100); 
+            //}
+            //catch
+            //{
+            //todo tester le son
+            //System.Media.SystemSounds.Beep.Play();
             //    }
             //}
             //else
@@ -926,7 +924,7 @@ public class UsvPolarPlotControl : UserControl
             //    labelModeAuv.ForeColor = Color.White;
             //}
 
-            //stockage et affichage 
+                //stockage et affichage 
             newPosition(bearing, distance);
         }
 
@@ -1115,4 +1113,29 @@ public class UsvPolarPlotControl : UserControl
             fenetreTerminal.BringToFront();
         }
     }
+
+    //this.TimerLastMessage.Interval = 1000; // 1 seconde
+    //this.TimerLastMessage.Tick += UpdateDateSinceLastMessage;
+    //this.TimerLastMessage.Start();
+    private void UpdateDateSinceLastMessage(object sender, EventArgs e)
+    {
+        if (lastTimestamp.HasValue)
+        {
+            TimeSpan elapsed = DateTime.Now - lastTimestamp.Value;
+            labelDuree.Text = $"{elapsed.TotalSeconds:F1} s";
+
+            // Optionnel : changement de couleur selon durée
+            if (elapsed.TotalSeconds < 6)
+                labelDuree.ForeColor = Color.FromArgb(255, 143, 255, 71);
+            else if (elapsed.TotalSeconds < 30)
+                labelDuree.ForeColor = Color.FromArgb(255, 255, 205, 71);
+            else
+                labelDuree.ForeColor = Color.FromArgb(255, 255, 88, 71);
+        }
+        else
+        {
+            labelDuree.Text = "N/A";
+        }
+    }
+
 }

@@ -30,10 +30,10 @@ namespace MissionPlanner.GCSViews
             this.setBatteryCellCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceHud = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControlactions = new System.Windows.Forms.TabControl();
             this.contextMenuStripactionstab = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multiLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControlactions = new System.Windows.Forms.TabControl();
             this.tabQuick = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelQuick = new System.Windows.Forms.TableLayoutPanel();
@@ -51,6 +51,10 @@ namespace MissionPlanner.GCSViews
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.contextMenuStripSetWP = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -168,6 +172,7 @@ namespace MissionPlanner.GCSViews
             this.flyToHereAltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flyToCoordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -176,6 +181,7 @@ namespace MissionPlanner.GCSViews
             this.PointCameraCoordsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.triggerCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flightPlannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.setHomeHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setEKFHomeHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setHomeHereToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,16 +207,18 @@ namespace MissionPlanner.GCSViews
             this.windDir1 = new MissionPlanner.Controls.WindDir();
             this.gMapControl1 = new MissionPlanner.Controls.myGMAP();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CB_tuning = new System.Windows.Forms.CheckBox();
             this.button_panel_ssh = new System.Windows.Forms.Button();
             this.coords1 = new MissionPlanner.Controls.Coords();
             this.CHK_autopan = new System.Windows.Forms.CheckBox();
-            this.CB_tuning = new System.Windows.Forms.CheckBox();
             this.ZedGraphTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openScriptDialog = new System.Windows.Forms.OpenFileDialog();
             this.scriptChecker = new System.Windows.Forms.Timer(this.components);
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -221,14 +229,15 @@ namespace MissionPlanner.GCSViews
             this.SubMainLeft.SuspendLayout();
             this.contextMenuStripHud.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceHud)).BeginInit();
-            this.contextMenuStripactionstab.SuspendLayout();
             this.tabControlactions.SuspendLayout();
+            this.contextMenuStripactionstab.SuspendLayout();
             this.tabQuick.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanelQuick.SuspendLayout();
             this.contextMenuStripQuickView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.contextMenuStripSetWP.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabActions.SuspendLayout();
@@ -299,7 +308,6 @@ namespace MissionPlanner.GCSViews
             // 
             // SubMainLeft.Panel2
             // 
-            this.SubMainLeft.Panel2.ContextMenuStrip = this.contextMenuStripactionstab;
             this.SubMainLeft.Panel2.Controls.Add(this.tabControlactions);
             this.SubMainLeft.Panel2.Controls.Add(this.panel_persistent);
             // 
@@ -544,27 +552,6 @@ namespace MissionPlanner.GCSViews
             // 
             this.bindingSourceHud.DataSource = typeof(MissionPlanner.CurrentState);
             // 
-            // contextMenuStripactionstab
-            // 
-            this.contextMenuStripactionstab.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStripactionstab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem,
-            this.multiLineToolStripMenuItem});
-            this.contextMenuStripactionstab.Name = "contextMenuStripactionstab";
-            resources.ApplyResources(this.contextMenuStripactionstab, "contextMenuStripactionstab");
-            // 
-            // customizeToolStripMenuItem
-            // 
-            this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            resources.ApplyResources(this.customizeToolStripMenuItem, "customizeToolStripMenuItem");
-            this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
-            // 
-            // multiLineToolStripMenuItem
-            // 
-            this.multiLineToolStripMenuItem.Name = "multiLineToolStripMenuItem";
-            resources.ApplyResources(this.multiLineToolStripMenuItem, "multiLineToolStripMenuItem");
-            this.multiLineToolStripMenuItem.Click += new System.EventHandler(this.multiLineToolStripMenuItem_Click);
-            // 
             // tabControlactions
             // 
             this.tabControlactions.ContextMenuStrip = this.contextMenuStripactionstab;
@@ -588,6 +575,27 @@ namespace MissionPlanner.GCSViews
             this.tabControlactions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControlactions.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
+            // contextMenuStripactionstab
+            // 
+            this.contextMenuStripactionstab.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripactionstab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customizeToolStripMenuItem,
+            this.multiLineToolStripMenuItem});
+            this.contextMenuStripactionstab.Name = "contextMenuStripactionstab";
+            resources.ApplyResources(this.contextMenuStripactionstab, "contextMenuStripactionstab");
+            // 
+            // customizeToolStripMenuItem
+            // 
+            this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
+            resources.ApplyResources(this.customizeToolStripMenuItem, "customizeToolStripMenuItem");
+            this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
+            // 
+            // multiLineToolStripMenuItem
+            // 
+            this.multiLineToolStripMenuItem.Name = "multiLineToolStripMenuItem";
+            resources.ApplyResources(this.multiLineToolStripMenuItem, "multiLineToolStripMenuItem");
+            this.multiLineToolStripMenuItem.Click += new System.EventHandler(this.multiLineToolStripMenuItem_Click);
+            // 
             // tabQuick
             // 
             resources.ApplyResources(this.tabQuick, "tabQuick");
@@ -609,6 +617,7 @@ namespace MissionPlanner.GCSViews
             // tableLayoutPanelQuick
             // 
             resources.ApplyResources(this.tableLayoutPanelQuick, "tableLayoutPanelQuick");
+            this.tableLayoutPanelQuick.ContextMenuStrip = this.contextMenuStripactionstab;
             this.tableLayoutPanelQuick.Controls.Add(this.quickView6, 1, 2);
             this.tableLayoutPanelQuick.Controls.Add(this.quickView5, 0, 2);
             this.tableLayoutPanelQuick.Controls.Add(this.quickView4, 1, 1);
@@ -750,11 +759,40 @@ namespace MissionPlanner.GCSViews
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button3.ContextMenuStrip = this.contextMenuStripSetWP;
             resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.BUT_quickauto_Click);
+            // 
+            // contextMenuStripSetWP
+            // 
+            this.contextMenuStripSetWP.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripSetWP.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripComboBox1,
+            this.toolStripMenuItem2});
+            this.contextMenuStripSetWP.Name = "contextMenuStripSetWP";
+            resources.ApplyResources(this.contextMenuStripSetWP, "contextMenuStripSetWP");
+            this.contextMenuStripSetWP.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripSetWP_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            resources.ApplyResources(this.toolStripComboBox1, "toolStripComboBox1");
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -2246,6 +2284,7 @@ namespace MissionPlanner.GCSViews
             this.PointCameraCoordsToolStripMenuItem1,
             this.triggerCameraToolStripMenuItem,
             this.flightPlannerToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.setHomeHereToolStripMenuItem,
             this.takeOffToolStripMenuItem,
             this.onOffCameraOverlapToolStripMenuItem,
@@ -2275,13 +2314,21 @@ namespace MissionPlanner.GCSViews
             // addPoiToolStripMenuItem
             // 
             this.addPoiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iciToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.saveFileToolStripMenuItem,
             this.loadFileToolStripMenuItem,
-            this.poiatcoordsToolStripMenuItem});
+            this.poiatcoordsToolStripMenuItem,
+            this.modifierToolStripMenuItem});
             this.addPoiToolStripMenuItem.Name = "addPoiToolStripMenuItem";
             resources.ApplyResources(this.addPoiToolStripMenuItem, "addPoiToolStripMenuItem");
             this.addPoiToolStripMenuItem.Click += new System.EventHandler(this.addPoiToolStripMenuItem_Click);
+            // 
+            // iciToolStripMenuItem
+            // 
+            this.iciToolStripMenuItem.Name = "iciToolStripMenuItem";
+            resources.ApplyResources(this.iciToolStripMenuItem, "iciToolStripMenuItem");
+            this.iciToolStripMenuItem.Click += new System.EventHandler(this.iciToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -2330,6 +2377,12 @@ namespace MissionPlanner.GCSViews
             this.flightPlannerToolStripMenuItem.Name = "flightPlannerToolStripMenuItem";
             resources.ApplyResources(this.flightPlannerToolStripMenuItem, "flightPlannerToolStripMenuItem");
             this.flightPlannerToolStripMenuItem.Click += new System.EventHandler(this.flightPlannerToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.setHomeHereToolStripMenuItem_Click);
             // 
             // setHomeHereToolStripMenuItem
             // 
@@ -2568,11 +2621,19 @@ namespace MissionPlanner.GCSViews
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.CB_tuning);
             this.panel1.Controls.Add(this.button_panel_ssh);
             this.panel1.Controls.Add(this.coords1);
             this.panel1.Controls.Add(this.CHK_autopan);
-            this.panel1.Controls.Add(this.CB_tuning);
             this.panel1.Name = "panel1";
+            // 
+            // CB_tuning
+            // 
+            resources.ApplyResources(this.CB_tuning, "CB_tuning");
+            this.CB_tuning.Name = "CB_tuning";
+            this.toolTip1.SetToolTip(this.CB_tuning, resources.GetString("CB_tuning.ToolTip"));
+            this.CB_tuning.UseVisualStyleBackColor = true;
+            this.CB_tuning.CheckedChanged += new System.EventHandler(this.CB_tuning_CheckedChanged);
             // 
             // button_panel_ssh
             // 
@@ -2606,14 +2667,6 @@ namespace MissionPlanner.GCSViews
             this.CHK_autopan.UseVisualStyleBackColor = true;
             this.CHK_autopan.CheckedChanged += new System.EventHandler(this.CHK_autopan_CheckedChanged);
             // 
-            // CB_tuning
-            // 
-            resources.ApplyResources(this.CB_tuning, "CB_tuning");
-            this.CB_tuning.Name = "CB_tuning";
-            this.toolTip1.SetToolTip(this.CB_tuning, resources.GetString("CB_tuning.ToolTip"));
-            this.CB_tuning.UseVisualStyleBackColor = true;
-            this.CB_tuning.CheckedChanged += new System.EventHandler(this.CB_tuning_CheckedChanged);
-            // 
             // ZedGraphTimer
             // 
             this.ZedGraphTimer.Tick += new System.EventHandler(this.ZedGraphTimer_Tick);
@@ -2640,6 +2693,18 @@ namespace MissionPlanner.GCSViews
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            // 
+            // modifierToolStripMenuItem
+            // 
+            this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
+            resources.ApplyResources(this.modifierToolStripMenuItem, "modifierToolStripMenuItem");
+            this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
+            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2660,14 +2725,15 @@ namespace MissionPlanner.GCSViews
             this.SubMainLeft.ResumeLayout(false);
             this.contextMenuStripHud.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceHud)).EndInit();
-            this.contextMenuStripactionstab.ResumeLayout(false);
             this.tabControlactions.ResumeLayout(false);
+            this.contextMenuStripactionstab.ResumeLayout(false);
             this.tabQuick.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanelQuick.ResumeLayout(false);
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.contextMenuStripSetWP.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -2969,5 +3035,13 @@ namespace MissionPlanner.GCSViews
         private Button button4;
         private SplitContainer splitContainer2;
         private Button button_panel_ssh;
+        private ContextMenuStrip contextMenuStrip1;
+        private ContextMenuStrip contextMenuStripSetWP;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripComboBox toolStripComboBox1;
+        private ToolStripMenuItem iciToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem modifierToolStripMenuItem;
     }
 }
