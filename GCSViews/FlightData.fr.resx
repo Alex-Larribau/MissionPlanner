@@ -208,7 +208,7 @@
     <value>Jauges</value>
   </data>
   <data name="CHK_autopan.Text" xml:space="preserve">
-    <value>Centré carte sur vehicule</value>
+    <value>Carte centrée sur vehicule</value>
   </data>
   <data name="setMJPEGSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Set MJPEG source</value>

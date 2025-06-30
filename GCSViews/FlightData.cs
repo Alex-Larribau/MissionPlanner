@@ -6755,78 +6755,80 @@ namespace MissionPlanner.GCSViews
 
         #endregion
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            if (!MainV2.comPort.BaseStream.IsOpen)
-            {
-                MessageBox.Show("Veuillez vous connecter à un véhicule");
-                return;
-            }
-             
-            if (toolStripComboBox1.Text != null || toolStripComboBox1.SelectedIndex == -1) 
-            {
-                MainV2.comPort.setWPCurrent(MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid, (ushort)toolStripComboBox1.SelectedIndex);
+        #region test toolstripmenu right clic auto pour setwp, c'est mieux de juste mettre un boutton en dessous 
+        //private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        //{
+        //    if (!MainV2.comPort.BaseStream.IsOpen)
+        //    {
+        //        MessageBox.Show("Veuillez vous connecter à un véhicule");
+        //        return;
+        //    }
 
-                MessageBox.Show("set wp n°" + Convert.ToString(toolStripComboBox1.SelectedIndex) + " as next wp");
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un wp dans le menu déroulant");
-            }
-        }
+        //    if (toolStripComboBox1.Text != null || toolStripComboBox1.SelectedIndex == -1) 
+        //    {
+        //        MainV2.comPort.setWPCurrent(MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid, (ushort)toolStripComboBox1.SelectedIndex);
 
-        private void contextMenuStripSetWP_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            toolStripComboBox1.Items.Clear();
+        //        MessageBox.Show("set wp n°" + Convert.ToString(toolStripComboBox1.SelectedIndex) + " as next wp");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Veuillez sélectionner un wp dans le menu déroulant");
+        //    }
+        //}
 
-            //CMB_setwp.Items.Add("0 (Home)");
+        //private void contextMenuStripSetWP_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    toolStripComboBox1.Items.Clear();
 
-            if (MainV2.comPort.MAV.param["CMD_TOTAL"] != null)
-            {
-                int wps = int.Parse(MainV2.comPort.MAV.param["CMD_TOTAL"].ToString());
-                for (int z = 1; z <= wps; z++)
-                {
-                    toolStripComboBox1.Items.Add(z.ToString());
-                }
+        //    //CMB_setwp.Items.Add("0 (Home)");
 
-                return;
-            }
+        //    if (MainV2.comPort.MAV.param["CMD_TOTAL"] != null)
+        //    {
+        //        int wps = int.Parse(MainV2.comPort.MAV.param["CMD_TOTAL"].ToString());
+        //        for (int z = 1; z <= wps; z++)
+        //        {
+        //            toolStripComboBox1.Items.Add(z.ToString());
+        //        }
 
-            if (MainV2.comPort.MAV.param["WP_TOTAL"] != null)
-            {
-                int wps = int.Parse(MainV2.comPort.MAV.param["WP_TOTAL"].ToString());
-                for (int z = 1; z <= wps; z++)
-                {
-                    toolStripComboBox1.Items.Add(z.ToString());
-                }
+        //        return;
+        //    }
 
-                return;
-            }
+        //    if (MainV2.comPort.MAV.param["WP_TOTAL"] != null)
+        //    {
+        //        int wps = int.Parse(MainV2.comPort.MAV.param["WP_TOTAL"].ToString());
+        //        for (int z = 1; z <= wps; z++)
+        //        {
+        //            toolStripComboBox1.Items.Add(z.ToString());
+        //        }
 
-            if (MainV2.comPort.MAV.param["MIS_TOTAL"] != null)
-            {
-                int wps = int.Parse(MainV2.comPort.MAV.param["MIS_TOTAL"].ToString());
-                for (int z = 1; z <= wps; z++)
-                {
-                    toolStripComboBox1.Items.Add(z.ToString());
-                }
+        //        return;
+        //    }
 
-                return;
-            }
+        //    if (MainV2.comPort.MAV.param["MIS_TOTAL"] != null)
+        //    {
+        //        int wps = int.Parse(MainV2.comPort.MAV.param["MIS_TOTAL"].ToString());
+        //        for (int z = 1; z <= wps; z++)
+        //        {
+        //            toolStripComboBox1.Items.Add(z.ToString());
+        //        }
 
-            if (MainV2.comPort.MAV.wps.Count > 0)
-            {
-                int wps = MainV2.comPort.MAV.wps.Count;
-                for (int z = 1; z <= wps; z++)
-                {
-                    toolStripComboBox1.Items.Add(z.ToString());
-                }
+        //        return;
+        //    }
 
-                return;
-            }
+        //    if (MainV2.comPort.MAV.wps.Count > 0)
+        //    {
+        //        int wps = MainV2.comPort.MAV.wps.Count;
+        //        for (int z = 1; z <= wps; z++)
+        //        {
+        //            toolStripComboBox1.Items.Add(z.ToString());
+        //        }
 
-        }
+        //        return;
+        //    }
 
+        //}
+        #endregion
+        
         private void iciToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PointLatLngAlt position = new PointLatLngAlt();
