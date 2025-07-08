@@ -424,6 +424,8 @@ namespace MissionPlanner.GCSViews
 
             tabControlactions.Multiline = Settings.Instance.GetBoolean("tabControlactions_Multiline", false);
 
+            updateDisplayTabControlActions();
+
         }
 
         public void Activate()
@@ -698,6 +700,8 @@ namespace MissionPlanner.GCSViews
             TabListDisplay.Clear();
 
             TabListDisplay.Add(tabQuick.Name, MainV2.DisplayConfiguration.displayQuickTab);
+
+            TabListDisplay.Add(tabNotesOperateur.Name, MainV2.DisplayConfiguration.displayNotesoperateurTab);
 
             TabListDisplay.Add(tabPagePreFlight.Name, MainV2.DisplayConfiguration.displayPreFlightTab);
 
@@ -5190,6 +5194,7 @@ namespace MissionPlanner.GCSViews
             e.DrawFocusRectangle();
         }
 
+        private string notesFilePath = ""; 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Messagetabtimer.Stop();
@@ -5206,7 +5211,25 @@ namespace MissionPlanner.GCSViews
             {
                 Messagetabtimer.Start();
             }
-            else
+            else if (tabControlactions.SelectedTab == tabNotesOperateur)
+            {
+                //nom du fichier texte
+                string today = DateTime.Now.ToString("yyyy_MM_dd");
+
+                //on va mettre les notes dans les telechargements 
+                string folder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                folder = Path.Combine(folder, "Downloads");
+
+                notesFilePath = Path.Combine(folder, $"notes_COSMAPlanner_{today}.txt");
+
+                //si on avait déja créé des notes ce jour là on met les nouvelle notes dans le même fichier 
+                if (!File.Exists(notesFilePath))
+                {
+                    File.Create(notesFilePath).Close(); // Création vide
+                    MessageBox.Show("Vous trouverez vos notes dans : " + notesFilePath); 
+                }
+            }
+            else 
             {
                 // foreach (Control temp in tabStatus.Controls)
                 // {
@@ -5218,6 +5241,33 @@ namespace MissionPlanner.GCSViews
                 if (tabControlactions.SelectedTab == tabQuick)
                 {
                 }
+            }
+        }
+
+        private void buttonEcrire_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(NoteTextBox.Text))
+            {
+                MessageBox.Show("Veuillez entrer du texte à écrire sur le fichier log"); 
+                return;
+            }
+
+            string timeStamp = DateTime.Now.ToString("HH:mm:ss : ");
+            string line = timeStamp + NoteTextBox.Text + "\n\n";
+
+            MessageBox.Show(notesFilePath);
+            MessageBox.Show(line + Environment.NewLine);
+
+            File.AppendAllText(notesFilePath, line + Environment.NewLine);
+            NoteTextBox.Clear();
+        }
+
+        private void addAutoTextToWrite(object sender, EventArgs e)
+        {
+            if (sender is System.Windows.Forms.Button btn)
+            {
+                string msg = btn.Tag.ToString(); 
+                NoteTextBox.AppendText(msg + ",\t");
             }
         }
 
@@ -6851,5 +6901,6 @@ namespace MissionPlanner.GCSViews
 
             POI.POIEdit((GMapMarkerPOI)CurrentGMapMarker);
         }
+
     }
 }

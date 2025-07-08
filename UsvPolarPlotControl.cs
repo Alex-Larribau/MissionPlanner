@@ -64,6 +64,8 @@ public class UsvPolarPlotControl : UserControl
     private Label label6;
     private Label labelErreur;
     private SplitContainer splitContainer3;
+    private Label label10;
+    private NumericUpDown numericUpDown1;
     private System.Windows.Forms.Timer TimerLastMessage = new System.Windows.Forms.Timer();
     
     public UsvPolarPlotControl()
@@ -88,6 +90,8 @@ public class UsvPolarPlotControl : UserControl
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button_connect = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -126,6 +130,7 @@ public class UsvPolarPlotControl : UserControl
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -150,8 +155,8 @@ public class UsvPolarPlotControl : UserControl
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Size = new System.Drawing.Size(476, 459);
-            this.splitContainer1.SplitterDistance = 268;
+            this.splitContainer1.Size = new System.Drawing.Size(422, 544);
+            this.splitContainer1.SplitterDistance = 317;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -168,11 +173,13 @@ public class UsvPolarPlotControl : UserControl
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.numericUpDown1);
+            this.splitContainer2.Panel2.Controls.Add(this.label10);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.pictureBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(476, 268);
-            this.splitContainer2.SplitterDistance = 30;
+            this.splitContainer2.Size = new System.Drawing.Size(422, 317);
+            this.splitContainer2.SplitterDistance = 25;
             this.splitContainer2.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -197,15 +204,15 @@ public class UsvPolarPlotControl : UserControl
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(476, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(422, 25);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // textBoxMp
             // 
             this.textBoxMp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxMp.Location = new System.Drawing.Point(291, 3);
+            this.textBoxMp.Location = new System.Drawing.Point(258, 3);
             this.textBoxMp.Name = "textBoxMp";
-            this.textBoxMp.Size = new System.Drawing.Size(84, 26);
+            this.textBoxMp.Size = new System.Drawing.Size(74, 22);
             this.textBoxMp.TabIndex = 6;
             this.textBoxMp.Text = "raspberry";
             // 
@@ -215,35 +222,37 @@ public class UsvPolarPlotControl : UserControl
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 30);
+            this.label4.Size = new System.Drawing.Size(40, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Host";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(252, 0);
+            this.label8.Location = new System.Drawing.Point(224, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 30);
+            this.label8.Size = new System.Drawing.Size(28, 25);
             this.label8.TabIndex = 5;
             this.label8.Text = "MP";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_adresse
             // 
             this.textBox_adresse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_adresse.Location = new System.Drawing.Point(55, 3);
+            this.textBox_adresse.Location = new System.Drawing.Point(49, 3);
             this.textBox_adresse.Name = "textBox_adresse";
-            this.textBox_adresse.Size = new System.Drawing.Size(102, 26);
+            this.textBox_adresse.Size = new System.Drawing.Size(90, 22);
             this.textBox_adresse.TabIndex = 0;
             this.textBox_adresse.Text = "192.168.1.11";
             // 
             // textBoxId
             // 
             this.textBoxId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxId.Location = new System.Drawing.Point(197, 3);
+            this.textBoxId.Location = new System.Drawing.Point(175, 3);
             this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(49, 26);
+            this.textBoxId.Size = new System.Drawing.Size(43, 22);
             this.textBoxId.TabIndex = 4;
             this.textBoxId.Text = "pi";
             // 
@@ -251,23 +260,58 @@ public class UsvPolarPlotControl : UserControl
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(163, 0);
+            this.label7.Location = new System.Drawing.Point(145, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 30);
+            this.label7.Size = new System.Drawing.Size(24, 25);
             this.label7.TabIndex = 3;
             this.label7.Text = "ID";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button_connect
             // 
             this.button_connect.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button_connect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_connect.Location = new System.Drawing.Point(381, 3);
+            this.button_connect.Location = new System.Drawing.Point(335, 0);
+            this.button_connect.Margin = new System.Windows.Forms.Padding(0);
             this.button_connect.Name = "button_connect";
-            this.button_connect.Size = new System.Drawing.Size(92, 24);
+            this.button_connect.Size = new System.Drawing.Size(87, 25);
             this.button_connect.TabIndex = 7;
             this.button_connect.Text = "Connect";
             this.button_connect.UseVisualStyleBackColor = false;
             this.button_connect.Click += new System.EventHandler(this.buttonConnect_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numericUpDown1.AutoSize = true;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(90, 263);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(69, 26);
+            this.numericUpDown1.TabIndex = 26;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(-4, 263);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 20);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Distance max :";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -275,7 +319,7 @@ public class UsvPolarPlotControl : UserControl
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 25);
+            this.label6.Size = new System.Drawing.Size(89, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Portée (m)";
             // 
@@ -291,7 +335,7 @@ public class UsvPolarPlotControl : UserControl
             "500"});
             this.comboBox1.Location = new System.Drawing.Point(2, 19);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(87, 33);
+            this.comboBox1.Size = new System.Drawing.Size(87, 28);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -302,7 +346,7 @@ public class UsvPolarPlotControl : UserControl
             this.pictureBox2.InitialImage = null;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(476, 234);
+            this.pictureBox2.Size = new System.Drawing.Size(422, 288);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -314,7 +358,7 @@ public class UsvPolarPlotControl : UserControl
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(476, 268);
+            this.pictureBox1.Size = new System.Drawing.Size(422, 317);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -333,19 +377,19 @@ public class UsvPolarPlotControl : UserControl
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer3.Size = new System.Drawing.Size(476, 187);
-            this.splitContainer3.SplitterDistance = 46;
+            this.splitContainer3.Size = new System.Drawing.Size(422, 223);
+            this.splitContainer3.SplitterDistance = 25;
             this.splitContainer3.TabIndex = 0;
             // 
             // labelErreur
             // 
             this.labelErreur.AutoSize = true;
             this.labelErreur.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelErreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelErreur.ForeColor = System.Drawing.Color.Red;
+            this.labelErreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelErreur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(88)))), ((int)(((byte)(71)))));
             this.labelErreur.Location = new System.Drawing.Point(0, 0);
             this.labelErreur.Name = "labelErreur";
-            this.labelErreur.Size = new System.Drawing.Size(102, 25);
+            this.labelErreur.Size = new System.Drawing.Size(118, 26);
             this.labelErreur.TabIndex = 5;
             this.labelErreur.Text = "ERREUR :";
             this.labelErreur.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -391,7 +435,7 @@ public class UsvPolarPlotControl : UserControl
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(476, 137);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(422, 194);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -402,7 +446,7 @@ public class UsvPolarPlotControl : UserControl
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 19);
+            this.label1.Size = new System.Drawing.Size(204, 27);
             this.label1.TabIndex = 28;
             this.label1.Text = "Retour d\'informations";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -413,9 +457,9 @@ public class UsvPolarPlotControl : UserControl
             this.label_Bearing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_Bearing.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Bearing.ForeColor = System.Drawing.Color.Cyan;
-            this.label_Bearing.Location = new System.Drawing.Point(122, 113);
+            this.label_Bearing.Location = new System.Drawing.Point(108, 162);
             this.label_Bearing.Name = "label_Bearing";
-            this.label_Bearing.Size = new System.Drawing.Size(113, 24);
+            this.label_Bearing.Size = new System.Drawing.Size(99, 32);
             this.label_Bearing.TabIndex = 25;
             this.label_Bearing.Text = "N/A";
             this.label_Bearing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -425,9 +469,9 @@ public class UsvPolarPlotControl : UserControl
             this.label25.AutoSize = true;
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(3, 113);
+            this.label25.Location = new System.Drawing.Point(3, 162);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(113, 24);
+            this.label25.Size = new System.Drawing.Size(99, 32);
             this.label25.TabIndex = 24;
             this.label25.Text = "Bearing";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -438,9 +482,9 @@ public class UsvPolarPlotControl : UserControl
             this.label_Distance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_Distance.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Distance.ForeColor = System.Drawing.Color.Yellow;
-            this.label_Distance.Location = new System.Drawing.Point(122, 94);
+            this.label_Distance.Location = new System.Drawing.Point(108, 135);
             this.label_Distance.Name = "label_Distance";
-            this.label_Distance.Size = new System.Drawing.Size(113, 19);
+            this.label_Distance.Size = new System.Drawing.Size(99, 27);
             this.label_Distance.TabIndex = 21;
             this.label_Distance.Text = "N/A";
             this.label_Distance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -450,9 +494,9 @@ public class UsvPolarPlotControl : UserControl
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(3, 94);
+            this.label21.Location = new System.Drawing.Point(3, 135);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(113, 19);
+            this.label21.Size = new System.Drawing.Size(99, 27);
             this.label21.TabIndex = 20;
             this.label21.Text = "Distance";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -462,9 +506,9 @@ public class UsvPolarPlotControl : UserControl
             this.labelModeAuv.AutoSize = true;
             this.labelModeAuv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelModeAuv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelModeAuv.Location = new System.Drawing.Point(122, 77);
+            this.labelModeAuv.Location = new System.Drawing.Point(108, 110);
             this.labelModeAuv.Name = "labelModeAuv";
-            this.labelModeAuv.Size = new System.Drawing.Size(113, 17);
+            this.labelModeAuv.Size = new System.Drawing.Size(99, 25);
             this.labelModeAuv.TabIndex = 17;
             this.labelModeAuv.Text = "N/A";
             this.labelModeAuv.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -474,9 +518,9 @@ public class UsvPolarPlotControl : UserControl
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(3, 77);
+            this.label17.Location = new System.Drawing.Point(3, 110);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(113, 17);
+            this.label17.Size = new System.Drawing.Size(99, 25);
             this.label17.TabIndex = 16;
             this.label17.Text = "Mode AUV";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -486,9 +530,9 @@ public class UsvPolarPlotControl : UserControl
             this.labelOrdreUsv.AutoSize = true;
             this.labelOrdreUsv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelOrdreUsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOrdreUsv.Location = new System.Drawing.Point(122, 57);
+            this.labelOrdreUsv.Location = new System.Drawing.Point(108, 81);
             this.labelOrdreUsv.Name = "labelOrdreUsv";
-            this.labelOrdreUsv.Size = new System.Drawing.Size(113, 20);
+            this.labelOrdreUsv.Size = new System.Drawing.Size(99, 29);
             this.labelOrdreUsv.TabIndex = 13;
             this.labelOrdreUsv.Text = "N/A";
             this.labelOrdreUsv.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -498,9 +542,9 @@ public class UsvPolarPlotControl : UserControl
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(3, 57);
+            this.label13.Location = new System.Drawing.Point(3, 81);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 20);
+            this.label13.Size = new System.Drawing.Size(99, 29);
             this.label13.TabIndex = 12;
             this.label13.Text = "Ordre USV ";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -510,9 +554,9 @@ public class UsvPolarPlotControl : UserControl
             this.labelGPS.AutoSize = true;
             this.labelGPS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelGPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGPS.Location = new System.Drawing.Point(122, 38);
+            this.labelGPS.Location = new System.Drawing.Point(108, 54);
             this.labelGPS.Name = "labelGPS";
-            this.labelGPS.Size = new System.Drawing.Size(113, 19);
+            this.labelGPS.Size = new System.Drawing.Size(99, 27);
             this.labelGPS.TabIndex = 9;
             this.labelGPS.Text = "N/A";
             this.labelGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -522,9 +566,9 @@ public class UsvPolarPlotControl : UserControl
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 38);
+            this.label9.Location = new System.Drawing.Point(3, 54);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(113, 19);
+            this.label9.Size = new System.Drawing.Size(99, 27);
             this.label9.TabIndex = 8;
             this.label9.Text = "Statut GPS";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -534,9 +578,9 @@ public class UsvPolarPlotControl : UserControl
             this.labelDuree.AutoSize = true;
             this.labelDuree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDuree.Location = new System.Drawing.Point(122, 19);
+            this.labelDuree.Location = new System.Drawing.Point(108, 27);
             this.labelDuree.Name = "labelDuree";
-            this.labelDuree.Size = new System.Drawing.Size(113, 19);
+            this.labelDuree.Size = new System.Drawing.Size(99, 27);
             this.labelDuree.TabIndex = 5;
             this.labelDuree.Text = "N/A";
             this.labelDuree.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -546,9 +590,9 @@ public class UsvPolarPlotControl : UserControl
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 19);
+            this.label5.Location = new System.Drawing.Point(3, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 19);
+            this.label5.Size = new System.Drawing.Size(99, 27);
             this.label5.TabIndex = 4;
             this.label5.Text = "Durée entre 2 messages";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -558,9 +602,9 @@ public class UsvPolarPlotControl : UserControl
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(241, 77);
+            this.label2.Location = new System.Drawing.Point(213, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 17);
+            this.label2.Size = new System.Drawing.Size(99, 25);
             this.label2.TabIndex = 29;
             this.label2.Text = "Ordre ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -570,9 +614,9 @@ public class UsvPolarPlotControl : UserControl
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(360, 77);
+            this.label3.Location = new System.Drawing.Point(318, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 17);
+            this.label3.Size = new System.Drawing.Size(101, 25);
             this.label3.TabIndex = 30;
             this.label3.Text = "Emergency";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -590,9 +634,9 @@ public class UsvPolarPlotControl : UserControl
             "DEPTH_HOLD_FOLLOW",
             "ALT_HOLD_FOLLOW",
             "SURFACE"});
-            this.ordreCombo.Location = new System.Drawing.Point(241, 97);
+            this.ordreCombo.Location = new System.Drawing.Point(213, 138);
             this.ordreCombo.Name = "ordreCombo";
-            this.ordreCombo.Size = new System.Drawing.Size(113, 33);
+            this.ordreCombo.Size = new System.Drawing.Size(99, 28);
             this.ordreCombo.TabIndex = 31;
             // 
             // urgenceCombo
@@ -609,9 +653,9 @@ public class UsvPolarPlotControl : UserControl
             "DEPTH_HOLD_FOLLOW",
             "ALT_HOLD_FOLLOW",
             "SURFACE"});
-            this.urgenceCombo.Location = new System.Drawing.Point(360, 97);
+            this.urgenceCombo.Location = new System.Drawing.Point(318, 138);
             this.urgenceCombo.Name = "urgenceCombo";
-            this.urgenceCombo.Size = new System.Drawing.Size(113, 33);
+            this.urgenceCombo.Size = new System.Drawing.Size(101, 28);
             this.urgenceCombo.TabIndex = 32;
             // 
             // button1
@@ -620,9 +664,9 @@ public class UsvPolarPlotControl : UserControl
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(241, 116);
+            this.button1.Location = new System.Drawing.Point(213, 165);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 18);
+            this.button1.Size = new System.Drawing.Size(99, 26);
             this.button1.TabIndex = 33;
             this.button1.Text = "Envoyer";
             this.button1.UseVisualStyleBackColor = false;
@@ -634,9 +678,9 @@ public class UsvPolarPlotControl : UserControl
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(360, 116);
+            this.button2.Location = new System.Drawing.Point(318, 165);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 18);
+            this.button2.Size = new System.Drawing.Size(101, 26);
             this.button2.TabIndex = 34;
             this.button2.Text = "Envoyer";
             this.button2.UseVisualStyleBackColor = false;
@@ -648,12 +692,12 @@ public class UsvPolarPlotControl : UserControl
             this.sshOutputBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sshOutputBox.Enabled = false;
             this.sshOutputBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sshOutputBox.Location = new System.Drawing.Point(241, 3);
+            this.sshOutputBox.Location = new System.Drawing.Point(213, 3);
             this.sshOutputBox.Multiline = true;
             this.sshOutputBox.Name = "sshOutputBox";
             this.tableLayoutPanel1.SetRowSpan(this.sshOutputBox, 2);
             this.sshOutputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.sshOutputBox.Size = new System.Drawing.Size(232, 32);
+            this.sshOutputBox.Size = new System.Drawing.Size(206, 48);
             this.sshOutputBox.TabIndex = 37;
             this.sshOutputBox.Text = "Veuillez vous connecter";
             this.sshOutputBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ShowFenetreTerm);
@@ -664,9 +708,9 @@ public class UsvPolarPlotControl : UserControl
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(360, 60);
+            this.button3.Location = new System.Drawing.Point(318, 84);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 14);
+            this.button3.Size = new System.Drawing.Size(101, 23);
             this.button3.TabIndex = 36;
             this.button3.Text = "Envoyer";
             this.button3.UseVisualStyleBackColor = false;
@@ -676,9 +720,9 @@ public class UsvPolarPlotControl : UserControl
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBox4, 2);
             this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(241, 41);
+            this.textBox4.Location = new System.Drawing.Point(213, 57);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(232, 26);
+            this.textBox4.Size = new System.Drawing.Size(206, 22);
             this.textBox4.TabIndex = 35;
             this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
             // 
@@ -686,7 +730,8 @@ public class UsvPolarPlotControl : UserControl
             // 
             this.Controls.Add(this.splitContainer1);
             this.Name = "UsvPolarPlotControl";
-            this.Size = new System.Drawing.Size(476, 459);
+            this.Size = new System.Drawing.Size(422, 544);
+            this.Load += new System.EventHandler(this.UsvPolarPlotControl_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -698,6 +743,7 @@ public class UsvPolarPlotControl : UserControl
             this.splitContainer2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
@@ -709,6 +755,12 @@ public class UsvPolarPlotControl : UserControl
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
+    }
+
+    private void UsvPolarPlotControl_Load(object sender, EventArgs e)
+    {
+        splitContainer3.SplitterDistance = 1;
+        comboBox1.SelectedIndex = 1;
     }
 
     #region variables globales
@@ -809,7 +861,7 @@ public class UsvPolarPlotControl : UserControl
                     
                     if ( result == DialogResult.Yes )
                     {
-                        shellStream.WriteLine("byobu");
+                        shellStream.WriteLine("byobu-quiet");
                     }
                 }
 
@@ -1000,12 +1052,21 @@ public class UsvPolarPlotControl : UserControl
                 last_distance = distance;
             }
 
+            double lastDist = double.Parse(last_distance); 
+
             // Mise à jour label
             labelModeAuv.Text = auvState;
             label_Distance.Text = distance + " m"; // $"{distance:F1} m";
             label_Bearing.Text = bearing + "°"; //  $"{bearing}°";
 
-            label_Distance.ForeColor = Color.Yellow; 
+            if (lastDist > valeurDistanceMax)
+            {
+                label_Distance.ForeColor = Color.FromArgb(255, 255, 88, 71);
+                yaunpb = true; 
+            }
+            else
+                label_Distance.ForeColor = Color.Yellow;
+
             label_Bearing.ForeColor = Color.Cyan;
 
             //couleur de mode auv : emergency/normal
@@ -1240,4 +1301,22 @@ public class UsvPolarPlotControl : UserControl
         }
     }
 
+
+    private int valeurDistanceMax = 50;
+    private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            ((Control)sender).Enabled = false;
+
+            valeurDistanceMax = (int)numericUpDown1.Value;
+        }
+        catch
+        {
+        }
+        ((Control)sender).Enabled = true;
+
+    }
+
 }
+

@@ -58,6 +58,22 @@ namespace MissionPlanner.GCSViews
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.CMB_setwp = new System.Windows.Forms.ComboBox();
+            this.tabNotesOperateur = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.NoteTextBox = new System.Windows.Forms.TextBox();
+            this.buttonEcrire = new System.Windows.Forms.Button();
             this.tabActions = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_SendMSG = new MissionPlanner.Controls.MyButton();
@@ -237,6 +253,8 @@ namespace MissionPlanner.GCSViews
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tabNotesOperateur.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tabActions.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabPagemessages.SuspendLayout();
@@ -553,6 +571,7 @@ namespace MissionPlanner.GCSViews
             // 
             this.tabControlactions.ContextMenuStrip = this.contextMenuStripactionstab;
             this.tabControlactions.Controls.Add(this.tabQuick);
+            this.tabControlactions.Controls.Add(this.tabNotesOperateur);
             this.tabControlactions.Controls.Add(this.tabActions);
             this.tabControlactions.Controls.Add(this.tabPagemessages);
             this.tabControlactions.Controls.Add(this.tabActionsSimple);
@@ -832,6 +851,167 @@ namespace MissionPlanner.GCSViews
             resources.GetString("CMB_setwp.Items")});
             this.CMB_setwp.Name = "CMB_setwp";
             this.CMB_setwp.Click += new System.EventHandler(this.CMB_setwp_Click);
+            // 
+            // tabNotesOperateur
+            // 
+            this.tabNotesOperateur.Controls.Add(this.tableLayoutPanel6);
+            resources.ApplyResources(this.tabNotesOperateur, "tabNotesOperateur");
+            this.tabNotesOperateur.Name = "tabNotesOperateur";
+            this.tabNotesOperateur.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            resources.ApplyResources(this.tableLayoutPanel6, "tableLayoutPanel6");
+            this.tableLayoutPanel6.Controls.Add(this.button6, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.button7, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.button8, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.button9, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.button11, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.button10, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.button12, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.button13, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.button14, 2, 2);
+            this.tableLayoutPanel6.Controls.Add(this.button15, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.button16, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.button17, 2, 3);
+            this.tableLayoutPanel6.Controls.Add(this.NoteTextBox, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.buttonEcrire, 2, 5);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button6, "button6");
+            this.button6.Name = "button6";
+            this.button6.Tag = "Arrivée sur site ";
+            this.toolTip1.SetToolTip(this.button6, resources.GetString("button6.ToolTip"));
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.Name = "button7";
+            this.button7.Tag = "USV à l\'eau ";
+            this.toolTip1.SetToolTip(this.button7, resources.GetString("button7.ToolTip"));
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button8, "button8");
+            this.button8.Name = "button8";
+            this.button8.Tag = "PB seaker ";
+            this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button9, "button9");
+            this.button9.Name = "button9";
+            this.button9.Tag = "C2 démarré ";
+            this.toolTip1.SetToolTip(this.button9, resources.GetString("button9.ToolTip"));
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button11, "button11");
+            this.button11.Name = "button11";
+            this.button11.Tag = "AUV à l\'eau ";
+            this.toolTip1.SetToolTip(this.button11, resources.GetString("button11.ToolTip"));
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button10, "button10");
+            this.button10.Name = "button10";
+            this.button10.Tag = "PB méca ";
+            this.toolTip1.SetToolTip(this.button10, resources.GetString("button10.ToolTip"));
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button12, "button12");
+            this.button12.Name = "button12";
+            this.button12.Tag = "USV Démarré ";
+            this.toolTip1.SetToolTip(this.button12, resources.GetString("button12.ToolTip"));
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button13, "button13");
+            this.button13.Name = "button13";
+            this.button13.Tag = "USV sorti de l\'eau ";
+            this.toolTip1.SetToolTip(this.button13, resources.GetString("button13.ToolTip"));
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button14, "button14");
+            this.button14.Name = "button14";
+            this.button14.Tag = "PB élec ";
+            this.toolTip1.SetToolTip(this.button14, resources.GetString("button14.ToolTip"));
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button15, "button15");
+            this.button15.Name = "button15";
+            this.button15.Tag = "AUV Démarré ";
+            this.toolTip1.SetToolTip(this.button15, resources.GetString("button15.ToolTip"));
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button16, "button16");
+            this.button16.Name = "button16";
+            this.button16.Tag = "AUV sorti de l\'eau ";
+            this.toolTip1.SetToolTip(this.button16, resources.GetString("button16.ToolTip"));
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.button17, "button17");
+            this.button17.Name = "button17";
+            this.button17.Tag = "PB entrée d\'eau ";
+            this.toolTip1.SetToolTip(this.button17, resources.GetString("button17.ToolTip"));
+            this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.addAutoTextToWrite);
+            // 
+            // NoteTextBox
+            // 
+            this.tableLayoutPanel6.SetColumnSpan(this.NoteTextBox, 3);
+            resources.ApplyResources(this.NoteTextBox, "NoteTextBox");
+            this.NoteTextBox.Name = "NoteTextBox";
+            // 
+            // buttonEcrire
+            // 
+            this.buttonEcrire.BackColor = System.Drawing.Color.MidnightBlue;
+            resources.ApplyResources(this.buttonEcrire, "buttonEcrire");
+            this.buttonEcrire.Name = "buttonEcrire";
+            this.toolTip1.SetToolTip(this.buttonEcrire, resources.GetString("buttonEcrire.ToolTip"));
+            this.buttonEcrire.UseVisualStyleBackColor = false;
+            this.buttonEcrire.Click += new System.EventHandler(this.buttonEcrire_Click);
             // 
             // tabActions
             // 
@@ -2708,6 +2888,9 @@ namespace MissionPlanner.GCSViews
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
+            this.tabNotesOperateur.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.tabActions.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabPagemessages.ResumeLayout(false);
@@ -3011,5 +3194,21 @@ namespace MissionPlanner.GCSViews
         private TableLayoutPanel tableLayoutPanel7;
         private ComboBox CMB_setwp;
         private Button button5;
+        private TabPage tabNotesOperateur;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Button button7;
+        private Button button6;
+        private Button button8;
+        private Button button9;
+        private Button button11;
+        private Button button10;
+        private Button button12;
+        private Button button13;
+        private Button button14;
+        private Button button15;
+        private Button button16;
+        private Button button17;
+        private TextBox NoteTextBox;
+        private Button buttonEcrire;
     }
 }
