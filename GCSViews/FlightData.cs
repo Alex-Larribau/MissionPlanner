@@ -5255,11 +5255,20 @@ namespace MissionPlanner.GCSViews
             string timeStamp = DateTime.Now.ToString("HH:mm:ss : ");
             string line = timeStamp + NoteTextBox.Text + "\n\n";
 
-            MessageBox.Show(notesFilePath);
-            MessageBox.Show(line + Environment.NewLine);
+            //debug 
+            //MessageBox.Show(notesFilePath);
+            //MessageBox.Show(line + Environment.NewLine);
 
-            File.AppendAllText(notesFilePath, line + Environment.NewLine);
-            NoteTextBox.Clear();
+            if (!string.IsNullOrWhiteSpace(notesFilePath))
+            {
+                File.AppendAllText(notesFilePath, line + Environment.NewLine);
+                NoteTextBox.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Impossible de trouver le fichier texte, veuillez quitter l'onglet Notes opérateur et ré-essayer"); 
+            }
+            
         }
 
         private void addAutoTextToWrite(object sender, EventArgs e)
