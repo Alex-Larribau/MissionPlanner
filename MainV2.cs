@@ -3595,7 +3595,8 @@ namespace MissionPlanner
             try
             {
                 // prescan
-                MissionPlanner.Comms.CommsBLE.SerialPort_GetCustomPorts();
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                    MissionPlanner.Comms.CommsBLE.SerialPort_GetCustomPorts();
             }
             catch { }
 
