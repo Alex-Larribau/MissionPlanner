@@ -883,7 +883,7 @@ namespace MissionPlanner.GCSViews
             this.button6.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
-            this.button6.Tag = "Arrivée sur site ";
+            this.button6.Tag = "Arrivée sur site";
             this.toolTip1.SetToolTip(this.button6, resources.GetString("button6.ToolTip"));
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -903,7 +903,7 @@ namespace MissionPlanner.GCSViews
             this.button8.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button8, "button8");
             this.button8.Name = "button8";
-            this.button8.Tag = "PB seaker ";
+            this.button8.Tag = "PB seaker";
             this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -913,7 +913,7 @@ namespace MissionPlanner.GCSViews
             this.button9.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button9, "button9");
             this.button9.Name = "button9";
-            this.button9.Tag = "C2 démarré ";
+            this.button9.Tag = "C2 démarré";
             this.toolTip1.SetToolTip(this.button9, resources.GetString("button9.ToolTip"));
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -933,7 +933,7 @@ namespace MissionPlanner.GCSViews
             this.button10.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button10, "button10");
             this.button10.Name = "button10";
-            this.button10.Tag = "PB méca ";
+            this.button10.Tag = "PB méca";
             this.toolTip1.SetToolTip(this.button10, resources.GetString("button10.ToolTip"));
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -943,7 +943,7 @@ namespace MissionPlanner.GCSViews
             this.button12.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button12, "button12");
             this.button12.Name = "button12";
-            this.button12.Tag = "USV Démarré ";
+            this.button12.Tag = "USV Démarré";
             this.toolTip1.SetToolTip(this.button12, resources.GetString("button12.ToolTip"));
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -983,7 +983,7 @@ namespace MissionPlanner.GCSViews
             this.button16.BackColor = System.Drawing.Color.MidnightBlue;
             resources.ApplyResources(this.button16, "button16");
             this.button16.Name = "button16";
-            this.button16.Tag = "AUV sorti de l\'eau ";
+            this.button16.Tag = "AUV sorti de l\'eau";
             this.toolTip1.SetToolTip(this.button16, resources.GetString("button16.ToolTip"));
             this.button16.UseVisualStyleBackColor = false;
             this.button16.Click += new System.EventHandler(this.addAutoTextToWrite);
@@ -2738,7 +2738,7 @@ namespace MissionPlanner.GCSViews
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;

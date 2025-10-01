@@ -5276,7 +5276,7 @@ namespace MissionPlanner.GCSViews
             if (sender is System.Windows.Forms.Button btn)
             {
                 string msg = btn.Tag.ToString(); 
-                NoteTextBox.AppendText(msg + ",\t");
+                NoteTextBox.AppendText(msg + Environment.NewLine);
             }
         }
 
