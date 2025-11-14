@@ -261,7 +261,7 @@ namespace MissionPlanner.GCSViews
             myhud = hud1;
             MainHcopy = MainH;
 
-            mymap.Paint += mymap_Paint;
+            //mymap.Paint += mymap_Paint;
 
             // populate the unmodified base list
             tabControlactions.TabPages.ForEach(i => { TabListOriginal.Add((TabPage) i); });
@@ -4453,7 +4453,9 @@ namespace MissionPlanner.GCSViews
 
         void mymap_Paint(object sender, PaintEventArgs e)
         {
-            distanceBar1.DoPaintRemote(e);
+            try { distanceBar1.DoPaintRemote(e); }
+            catch { }
+            
         }
 
         void NoFly_NoFlyEvent(object sender, NoFly.NoFly.NoFlyEventArgs e)

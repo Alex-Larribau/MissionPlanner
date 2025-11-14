@@ -29,5 +29,12 @@ namespace MissionPlanner
             }
         }
 
+        private void FenetreTerminal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Invoke((Action)(() =>
+            {
+                UsvPolarPlotControl.fenetreOuverte = false;
+            }));
+        }
     }
 }
